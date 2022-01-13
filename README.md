@@ -18,7 +18,7 @@ The installation steps are documented below.
 - decide on a unit of work. For instance, a single run of a single program, or a sequence of programs operating on 
 common data. Is there a parameter or two that specifies this unit of work? The unit of work should take less than 10 
 hours to run.
-- decide on a name for your project e.g. "projectX"
+- decide on a name for your project e.g. "projectx"
 - develop the programs/scripts to perform the unit of work
 - define a set of input data
 - define a parameter (or several parameters) to control the execution.
@@ -85,7 +85,7 @@ is recommended. In Linux, you can use your favorite package manager.
 
 
         git fetch cloudburst master
-        git pull cloudburst master --squash --allow-unrelated-histories
+        git pull cloudburst master --squash
 
 
    b. use an existing github repo. Use `git subtree` to clone the cloudburst repo as a directory 
@@ -105,7 +105,7 @@ is recommended. In Linux, you can use your favorite package manager.
 
 
         git fetch cloudburst master
-        git subtree pull --prefix cloudburst cloudburst master --squash
+        git subtree pull --prefix cloudburst cloudburst master --squash --allow-unrelated-histories
 
 
    - you can even push changes back up to the remote cloudburst repo, being careful to merge
@@ -122,8 +122,8 @@ is recommended. In Linux, you can use your favorite package manager.
 
 2. run the `aws configure` command to set up your security credentials. You will need to generate these in 
 the AWS console https://console.aws.amazon.com/iamv2/home#/users : user : security credentials : access keys
-3. edit the `Makefile`, naming the TAG and REPO_ID 'projectX' and your AWS_ID (account id) at the top 
-4. configure terraform by editing the `terraform.tfvars` file, naming the deployment 'projectX'. Create the infrastructure when you are satisfied. The project is initially configured to work out of the box in the us-west-1 region. To modify it for another region, networking.tf would need to be edited to apply the correct availability zones and subnets.
+3. edit the `Makefile`, naming the TAG and REPO_ID 'projectx' and your AWS_ID (account id) at the top 
+4. configure terraform by editing the `terraform.tfvars` file, naming the deployment 'projectx'. Create the infrastructure when you are satisfied. The project is initially configured to work out of the box in the us-west-1 region. To modify it for another region, networking.tf would need to be edited to apply the correct availability zones and subnets.
 
 
         cd terraform
