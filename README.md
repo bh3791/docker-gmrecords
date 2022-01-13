@@ -81,7 +81,7 @@ is recommended. In Linux, you can use your favorite package manager.
         git remote add -f cloudburst https://github.com/bh3791/cloudburst.git
 
 
-   - To update the subtree later on:
+   - To get updates from the cloudburst repo later:
 
 
         git fetch cloudburst master
