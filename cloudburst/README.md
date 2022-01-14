@@ -71,7 +71,7 @@ is recommended. In Linux, you can use your favorite package manager.
    and use this structure to develop your project. This can be done from the 
    github: https://github.com/bh3791/cloudburst
 
-   To get updates from the cloudburst repo later, you can use the github site to 
+   To get updates from the cloudburst repo later, use the github site to 
    merge the updates, or follow these manual steps:
 
         git fetch upstream master
@@ -185,11 +185,14 @@ results to S3. But you could design a process to pull from other web servers and
     make push
 
 ### Compress the input data
-    python3 scripts/compress_inputs.py -source-folder ./source.tmp -zip-folder ./input.tmp -filter 'Dam*/Period*'
     python3 scripts/compress_inputs.py -source-folder ./source.tmp -zip-folder ./input.tmp -filter 'faultfiles'
+    python3 scripts/compress_inputs.py -source-folder ./source.tmp -zip-folder ./input.tmp -filter 'Dam*/Period*'
 
 ### Upload input data to S3
+You can upload files using the upload_inputs script or with the AWS CLI:
+
     python3 scripts/upload_inputs.py -bucket projectx_test -local-folder ./input.tmp -prefix 'input/' -threads 10
+    aws s3 cp ./input.tmp/ s3://projectx_test/input/
     
 ### Start a batch job
 The `start_jobs` script is a powerful tool and has a number of options. Some examples are listed below:
@@ -243,7 +246,7 @@ two variables being set:
 ### Unzip output files
     python3 scripts/unzip_folder.py -zipdir 'output.tmp'
 
-### get help on any of these commands
+### get help on any of the above commands using --help
     python3 scripts/unzip_folder.py --help
     python3 scripts/unzip_folder.py --help
 
