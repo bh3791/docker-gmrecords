@@ -5,7 +5,7 @@ AWS_REGION=us-west-1
 ECR_REPO_ID=$(DEPLOYMENT_ID)
 ECR_REPO_URL=$(AWS_ID).dkr.ecr.$(AWS_REGION).amazonaws.com
 
-build: 
+build:
 	docker compose build $(DEPLOYMENT_ID)
 
 run: build
@@ -18,7 +18,7 @@ terraform:
 	cd cloudburst/terraform
 	terraform apply
 	cd ../../
-	
+
 push: build
 	docker tag $(DEPLOYMENT_ID) arkottke/$(DEPLOYMENT_ID)
 	docker push arkottke/$(DEPLOYMENT_ID):latest
