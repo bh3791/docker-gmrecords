@@ -15,10 +15,10 @@ def compress(zip_path:Path, source_path:Path):
 
     try:
         if os.name == 'nt':
-            exec_7z = '7z'
+            exec_7z = '7zr'
             redirect = ''
         else:
-            exec_7z = '7z'
+            exec_7z = '7zr'
             redirect = ' > /dev/null'
 
         # resolve() is needed to normalize the path, else the containing directory shows up in the archive!
@@ -35,10 +35,10 @@ def expand(source_path:str, destination_path:str):
 
     try:
         if os.name == 'nt':
-            exec_7z = '7z'
+            exec_7z = '7zr'
             redirect = ''
         else:
-            exec_7z = '7z'
+            exec_7z = '7zr'
             redirect = ' > /dev/null'
 
         return os.system(f'{exec_7z} x -y "{source_path}" -o"{destination_path}"{redirect}')
