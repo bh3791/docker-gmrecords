@@ -1,11 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="c137927e-a56b-41ae-998f-2acb53ba395b" name="Changes" comment="update docs">
-      <change beforePath="$PROJECT_DIR$/cloudburst/.idea/cloudburst.iml" beforeDir="false" afterPath="$PROJECT_DIR$/cloudburst/.idea/cloudburst.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cloudburst/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/cloudburst/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cloudburst/Dockerfile" beforeDir="false" afterPath="$PROJECT_DIR$/cloudburst/Dockerfile" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cloudburst/scripts/ziplib.py" beforeDir="false" afterPath="$PROJECT_DIR$/cloudburst/scripts/ziplib.py" afterDir="false" />
+    <list default="true" id="c137927e-a56b-41ae-998f-2acb53ba395b" name="Changes" comment="update workspace.xml">
+      <change beforePath="$PROJECT_DIR$/Dockerfile" beforeDir="false" afterPath="$PROJECT_DIR$/Dockerfile" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -73,7 +70,14 @@
       <option name="project" value="LOCAL" />
       <updated>1642197754011</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="update workspace.xml">
+      <created>1642216410116</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1642216410116</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -91,6 +95,7 @@
     <MESSAGE value="bring in pycharm files" />
     <MESSAGE value="update idea file" />
     <MESSAGE value="update docs" />
-    <option name="LAST_COMMIT_MESSAGE" value="update docs" />
+    <MESSAGE value="update workspace.xml" />
+    <option name="LAST_COMMIT_MESSAGE" value="update workspace.xml" />
   </component>
 </project>
