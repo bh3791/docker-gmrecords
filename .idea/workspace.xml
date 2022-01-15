@@ -2,8 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="c137927e-a56b-41ae-998f-2acb53ba395b" name="Changes" comment="update docs">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cloudburst/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/cloudburst/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cloudburst/.idea/cloudburst.iml" beforeDir="false" afterPath="$PROJECT_DIR$/cloudburst/.idea/cloudburst.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cloudburst/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/cloudburst/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cloudburst/Dockerfile" beforeDir="false" afterPath="$PROJECT_DIR$/cloudburst/Dockerfile" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cloudburst/scripts/ziplib.py" beforeDir="false" afterPath="$PROJECT_DIR$/cloudburst/scripts/ziplib.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
