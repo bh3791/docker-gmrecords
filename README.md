@@ -23,7 +23,7 @@ hours to run.
 - define a set of input data
 - define a parameter (or several parameters) to control the execution.
 
-### Install the tools
+## Install the tools
 installation involves a number of packages. These can be either downloaded as installers from the web or installed
 by a command-line tool. For command-line installation on the mac, homebrew is recommended. On the pc, chocolatey 
 is recommended. In Linux, you can use your favorite package manager.
@@ -64,30 +64,21 @@ is recommended. In Linux, you can use your favorite package manager.
     - JetBrains Pycharm https://www.jetbrains.com/pycharm/
     - Microsoft Visual Studio Code https://code.visualstudio.com/
 
-### Configure the environment
-1. clone (fork) or subtree the cloudburst repo
+## Configure the environment
+### fork or subtree the cloudburst repo
 
-   a. are you creating a new repo? you can fork or clone the cloudburst repo 
-   and use this structure to develop your scripts. You can do this from the github website or at the
-   command line:
+   a. are you creating a new repo? you can fork the cloudburst repo 
+   and use this structure to develop your project. This can be done from the 
+   github: https://github.com/bh3791/cloudburst
 
+   To get updates from the cloudburst repo later, use the github site to 
+   merge the updates, or follow these manual steps:
 
-        git clone https://github.com/bh3791/cloudburst.git my-project
-
-
-   - Next, add a remote (shortcut):
-
-
-        git remote add -f cloudburst https://github.com/bh3791/cloudburst.git
+        git fetch upstream master
+        git pull upstream master --squash
 
 
-   - To get updates from the cloudburst repo later:
-
-
-        git fetch cloudburst master
-        git pull cloudburst master --squash
-
-
+### existing repo: subtree
    b. use an existing github repo. Use `git subtree` to clone the cloudburst repo as a directory 
    subtree in your repo. From a command prompt in your repo, first define a remote (shortcut):
 
@@ -138,7 +129,7 @@ the AWS console https://console.aws.amazon.com/iamv2/home#/users : user : securi
         aws s3 mb projectx_test
 
 
-### Configure your process 
+## Configuring your process with tasks.json
 The easiest way to approach this is to start by creating a functioning docker container
 that contains the scripts/executables you want. However, you may not yet be accessing S3 to retrieve and store
 the input and output data.
@@ -158,7 +149,7 @@ of the tasks.json from simple to complex. The tasks.json file uses parameter sub
 
 The `extras/` folder also contains some examples of Dockerfiles.
 
-### parameters
+## Passing parameters from the client to use in tasks.json and your processes
 The framework passes parameters as environment variables into docker. This is true for local testing using 
 `docker-compose.yml` and also true when starting an AWS batch job with `start_jobs.py`. The framework 
 only absolutely requires a single parameter: `AWS_REGION=us-west-1` (or the region of your choice)
@@ -180,27 +171,30 @@ variables in your AWS Batch docker container. The framework can access these var
 substitution in your `tasks.json` file, e.g. to specify the location of an S3 path or an addition parameter to
 pass into your program/script. See the example below for more details.
 
-### Using the client scripts
+## Using the client scripts
 The following steps illustrate the use of some of the client scripts. A typical cloudburst process would
 involve storing input data in S3, running a series of programs in the docker container, and then storing
 results to S3. But you could design a process to pull from other web servers and store to whatever place you wish.
-#### validate the `tasks.json` file you created against the tasks schema
+### validate the `tasks.json` file you created against the tasks schema
     jsonschema scripts/tasks.schema.json -i scripts/tasks.json -o plain
 
-#### Build and test the docker container locally using `docker-compose.yml` to hold the parameters.
+### Build and test the docker container locally using `docker-compose.yml` to hold the parameters.
     make test
 
-#### When you are satisfied with the docker container, upload it to ECR
+### When you are satisfied with the docker container, upload it to ECR
     make push
 
-#### Compress the input data
-    python3 scripts/compress_inputs.py -source-folder ./source.tmp -zip-folder ./input.tmp -filter 'Dam*/Period*'
+### Compress the input data
     python3 scripts/compress_inputs.py -source-folder ./source.tmp -zip-folder ./input.tmp -filter 'faultfiles'
+    python3 scripts/compress_inputs.py -source-folder ./source.tmp -zip-folder ./input.tmp -filter 'Dam*/Period*'
 
-#### Upload input data to S3
+### Upload input data to S3
+You can upload files using the upload_inputs script or with the AWS CLI:
+
     python3 scripts/upload_inputs.py -bucket projectx_test -local-folder ./input.tmp -prefix 'input/' -threads 10
+    aws s3 cp ./input.tmp/ s3://projectx_test/input/
     
-#### Start a batch job
+### Start a batch job
 The `start_jobs` script is a powerful tool and has a number of options. Some examples are listed below:
 
 The command will be preview-only until the `-apply` parameter is added.
@@ -234,30 +228,30 @@ two variables being set:
 
     python3 scripts/start_jobs.py ... -name-value STORAGE_BUCKET=my_storage_bucket -name-value SERIES_NUMBER=21
 
-#### List the active batch jobs
+### List the active batch jobs
     aws batch list-jobs --job-queue projectx_queue
 
-#### Stop batch jobs
+### Stop batch jobs
     python3 scripts/stop_jobs.py -queue projectx_queue -all
     python3 scripts/stop_jobs.py -queue projectx_queue -job
     aws batch terminate-job --job-id <jobId> --reason 'user requested stop'
 
-#### Check the status of a specific aws job
+### Check the status of a specific aws job
     aws batch describe-jobs --jobs <jobId>
 
-#### Download files from an S3 folder
+### Download files from an S3 folder
     python3 scripts/get_outputs.py -bucket projectx_test -prefix 'output/' -local-folder output.tmp -threads 10
     aws s3 cp s3://projectx_test/output/ ./output.tmp/
 
-#### Unzip output files
+### Unzip output files
     python3 scripts/unzip_folder.py -zipdir 'output.tmp'
 
-#### get help on any of these commands
+### get help on any of the above commands using --help
     python3 scripts/unzip_folder.py --help
     python3 scripts/unzip_folder.py --help
 
 
-## Technologies Used by the Framework.
+## Technologies used in cloudburst
 ### Docker Containers
 Docker is a tool that allows you, by specifying a single configuration file (the `Dockerfile`), build, test and deploy
 a working linux image with the tools needed to get your work done. These docker images create "container instances"

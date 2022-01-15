@@ -1,7 +1,7 @@
 FROM python:3.10.1-slim-bullseye
 
 RUN apt-get update && \
-    apt-get install -y p7zip-full bash
+    apt-get install -y p7zip bash
 
 RUN pip3 install --upgrade boto3 jsonschema
 
